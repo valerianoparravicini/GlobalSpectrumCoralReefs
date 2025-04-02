@@ -14,7 +14,8 @@ To reproduce the analyses it is necessary to run targets::tar_make (i.e. run the
 # NOTES: 
 1) Each pipeline has an associates renv environment produced with the 'renv' package in R to ensure the installation of the exact version of R packages used to conduct the analyses. 
 2) The analyses have been performed with the "R version 4.4.2 (2024-10-31)" installed on a Debian GNU/Linux 12 (bookworm) machine.
-:exclamation: :boom: **CAUTION**: The script depends on parallel
+
+**CAUTION**: The script depends on parallel
 computation and uses up to **120 threads** and **250G** of memory, and thus
 should be run on a supercomputer. It takes about one four days to reproduce
 the entire project.
