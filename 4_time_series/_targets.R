@@ -5,7 +5,7 @@ source("R/functions.R")
 dir.create("output", recursive = TRUE, showWarnings = FALSE)
 options(tidyverse.quiet = TRUE)
 
-tar_option_set(packages = c("tidyverse", "patchwork", "readr","tidybayes",  "brms", "fishflux"))
+tar_option_set(packages = c("tidyverse", "patchwork", "readr","tidybayes",  "brms", "fishflux", "ggplot2", "ggcorrplot"))
 
 # data files
 list(
@@ -56,7 +56,8 @@ list(
   tar_target(morphs_traits, geometry_change_1_year_ts(traits, indivs, geo, rls_info)),
   tar_target(benthic_functions, compute_functions(morphs_traits, predictors_ts, rls_info, ts_benthos_case_study = ts_benthos_case_study_clean)),
   tar_target(ts_functions_dataset, create_ts_functions_dataset(benthos = benthic_functions, fish = summary_fish_functions)),
-  tar_target(pca_ts, predict_pca(ts_functions_dataset))
+  tar_target(ts_pca, predict_pca(ts_functions_dataset)),
+  tar_target(Fig_4, fig_4(ts_pca))
 )
   
 

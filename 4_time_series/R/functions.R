@@ -638,3 +638,107 @@ predict_pca <- function(ts_functions_dataset) {
 }
 
 
+
+fig_4 <- function(ts_pca) {
+## Making Figure 4
+colors = c("#8B6A06", "#B78C08", "#E3AE09", "#FFD700", "#FFE55C", "#FFED8A", "#002600", "#003300", "#004c00", "#006600", 
+           "#008000", "#198c19", "#329932", "#66b266", "#7fbf7f", "#99cc99", "#b2d8b2", "#260818", "#2f1969", "#351c75", 
+           "#3a2868", "#3f1e5f", "#4a236f", "#54287f", "#5f2d8f", "#554a75", "#71639c", "#7f6faf", "#8e7cc3", "#c3b8de", 
+           "#d9d2e9", "#ead2de", "#e1c0d0", "#d9aec3", "#d5a6bd", "#ce95b3", "#c888a9", "#c27ba0")
+
+pca_ordered = ts_pca %>% mutate(location = factor(location, levels = c("Hoga", "Moorea", "Seychelles"))) %>% arrange(location) 
+PC1 = pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$site))) %>% 
+  ggplot(aes(x = year, y = PC1)) + theme_classic() +
+  geom_line(aes(col = site, group = site), show.legend = F) + 
+  geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
+  scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
+  scale_y_reverse(name = "PC1 (33.3%)", limits = c(4.5, -1.75), breaks = seq(4.5,-1.5, -2)) +
+  scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid = element_line(colour = NA),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 14, vjust = -3),
+        axis.title.y = element_text(size = 14, vjust = 3),
+        legend.title = element_text(size = 15),
+        strip.text = element_text(size = 14),
+        plot.title = element_text(size = 15, face = "bold"),
+        plot.margin = unit(c(.5, .5, .5, .5), "cm"))
+
+PC2 = pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$site))) %>% 
+  ggplot(aes(x = year, y = PC2)) + theme_classic() +
+  geom_line(aes(col = site, group = site), show.legend = F) + 
+  geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
+  scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
+  scale_y_continuous(name = "PC2 (24.5%)", breaks = seq(-4, 4, 2), limits = c(-4, 4)) +
+  scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid = element_line(colour = NA),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 14, vjust = -3),
+        axis.title.y = element_text(size = 14, vjust = 3),
+        legend.title = element_text(size = 15),
+        strip.text = element_text(size = 14),
+        plot.margin = unit(c(.5, .5, .5, .5), "cm"))
+
+PC3 <- pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$site))) %>% 
+  ggplot(aes(x = year, y = PC3)) + theme_classic() +
+  geom_line(aes(col = site, group = site), show.legend = F) + 
+  geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
+  scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
+  scale_y_continuous(name = "PC3 (14.4%)", breaks = seq(-3.5, 2.5, 2), limits = c(-3.5, 2.5)) +
+  scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid = element_line(colour = NA),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 14, vjust = -3),
+        axis.title.y = element_text(size = 14, vjust = 3),
+        legend.title = element_text(size = 15),
+        strip.text = element_text(size = 14),
+        plot.margin = unit(c(.5, .5, .5, .5), "cm"))
+
+PC4 <- pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$site))) %>% 
+  ggplot(aes(x = year, y = PC4)) + theme_classic() +
+  geom_line(aes(col = site, group = site), show.legend = F) + 
+  geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
+  scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
+  scale_y_continuous(name = "PC4 (6.7%)", breaks = seq(-2, 2, 2), limits = c(-2, 2.25)) +
+  scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid = element_line(colour = NA),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 14, vjust = -3),
+        axis.title.y = element_text(size = 14, vjust = 3),
+        legend.title = element_text(size = 15),
+        strip.text = element_text(size = 14),
+        plot.margin = unit(c(.5, .5, .5, .5), "cm"))
+
+# Correlations
+cor_1 <- round(cor(ts_pca %>% dplyr::filter(location == "Seychelles") %>% 
+                     select(PC1, PC2, PC3, PC4)), 3) %>% 
+  ggcorrplot(., hc.order = F, type = 'lower', show.diag = F,
+             colors = c("#c27ba0", "#7f6faf", "#351c75"), lab = T) + 
+  theme(legend.position = "none") + ggtitle("Seychelles")
+cor_2 <- round(cor(ts_pca %>% dplyr::filter(location == "Hoga") %>% 
+                     select(PC1, PC2, PC3, PC4)), 3) %>% 
+  ggcorrplot(., hc.order = F, type = 'lower', show.diag = F,
+             colors = c("#8F4B07", "#FFED8A", "#FFD700"), lab = T) + 
+  theme(legend.position = "none") + ggtitle("Indonesia")
+cor_3 <- round(cor(ts_pca %>% dplyr::filter(location == "Moorea") %>% 
+                     select(PC1, PC2, PC3, PC4)), 3) %>% 
+  ggcorrplot(., hc.order = F, type = 'lower', show.diag = F,
+             colors = c("#E5E4E2", "#008000", "#004c00"), lab = T) + 
+  theme(legend.position = "none") + ggtitle("French Polynesia")
+
+# Figure 4
+(fig_4 <- (wrap_elements(full = (PC1 + PC2 + PC3 + PC4) + plot_layout(ncol = 4))) /
+    wrap_elements(full = (cor_1 + cor_2 + cor_3))  +
+    plot_layout(nrow = 2) &
+    plot_annotation(tag_levels = "A"))
+
+ggsave("output/Fig_4.png", fig_4, width = 30, height = 15, units = "cm", dpi = 320)
+
+}

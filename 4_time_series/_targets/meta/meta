@@ -39,8 +39,11 @@ ts_functions_dataset|stem|04f92352c0cd6067|92b61035d35e431f|fbaa5621a4389bde|-20
 pca_rls|stem|eb26da7f292606da|032f57080d680c9d|13716f6ae3bfb2c5|-1291782123||t20178.452329973s|s66b|66|rds|local|vector|||0.001||
 pca_fun|stem|eb26da7f292606da|032f57080d680c9d|13716f6ae3bfb2c5|1373942842||t20178.4545678101s|s66b|66|rds|local|vector|||0.002||
 pca_functions|stem|eb26da7f292606da|3dbbd8d06f94743d|13716f6ae3bfb2c5|-1773575807||t20178.4565043431s|s66b|66|rds|local|vector|||0.001||
+pca_ts|stem|e8b61b8a9215d390|81577e290553acdd|753bd750b020894f|-1546434128||t20178.4590202436s|s25659b|25659|rds|local|vector|||0.018||
+ts_pca|stem|e8b61b8a9215d390|81577e290553acdd|753bd750b020894f|1975337112||t20182.5363608422s|s25659b|25659|rds|local|vector|||0.018||
 check_XY_difference|function|8eb7475cfac799d5
 algae_temp_factor|function|9c139267bd8849e2
+.Random.seed|object|1f1efb374c0598b7
 run_fishflux|function|a825b90556ad24b5
 geometry_change_1_year_ts|function|1cb7c9f90d21b241
 coral_temp_factor|function|c4c1239c9f787629
@@ -62,7 +65,8 @@ add_params|function|87a856b9a70d1d55
 combine_transects_functions|function|65e052e3b7cf8690
 clean_fish|function|6daad3507627c6fa
 cone|function|0c38b635630816f1
+fig_4|function|ffdc94159fd7ddaa
 sim_colony_size_ts|function|9d50190f21020bb4
 run_fishflux_segmented|function|1eb27646788dbfdf
 compute_functions|function|3082f9fdf9dbe342
-pca_ts|stem|e8b61b8a9215d390|81577e290553acdd|753bd750b020894f|-1546434128||t20178.4590202436s|s25659b|25659|rds|local|vector|||0.018||
+Fig_4|stem|0ee21b014bb0b42d|9884a9af6f57607c|c0a916d327e21a31|-1962471454||t20182.5396161117s|s68b|68|rds|local|vector|||1.275|Removed 1 row containing missing values or values outside the scale rangegeom_point.. Removed 1 row containing missing values or values outside the scale rangegeom_point.. Removed 1 row containing missing values or values outside the scale rangegeom_line.. Removed 1 row containing missing values or values outside the scale rangegeom_point.|
