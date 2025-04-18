@@ -13,7 +13,7 @@ clean_fish <- function(fish_raw) {
            site = gsub(" ", "", site)) %>%
     ungroup() 
   
-  # add a dataset
+  ## add a dataset
   mpa <- read_csv("data/moorea_uvc_mpa.csv") %>%
     separate(taxon, into = c("genus", "sp"), remove = FALSE) %>%
     mutate(dataset_id = "Moorea_MPA",
@@ -46,6 +46,7 @@ clean_fish <- function(fish_raw) {
 
 
 clean_bent <- function(benthic_raw) {
+  #
   benthic_raw %>% janitor::clean_names() %>%
     filter(category == "coral") %>%
     mutate(location = gsub(" ", "", location),
@@ -78,9 +79,9 @@ sst_time_series <- function(data) {
   sst_info <- rerddap::info(
     sst_dataset, url = "https://coastwatch.pfeg.noaa.gov/erddap/"
   )
-  # Produce a dataset with daily values for each site.
-  # Info from `info(sst_dataset)`:
-  #   var is "sst", dims of interest are latitude, longitude and time
+  ## Produce a dataset with daily values for each site.
+  ## Info from `info(sst_dataset)`:
+  ##   var is "sst", dims of interest are latitude, longitude and time
   all_coords <- data %>%
     dplyr::distinct(year, latitude, longitude) %>%
     split(f = ~ latitude + longitude, drop = TRUE) %>%
@@ -169,7 +170,7 @@ add_params <- function(sp_size, params) {
   
   left_join(test, params) %>%
     ungroup() %>%
-    drop_na(Family) # only keep combinations for which we have parameters (~99%)
+    drop_na(Family) ## only keep combinations for which we have parameters (~99%)
 }
 
 run_fishflux <- function(data, cores) {
@@ -206,6 +207,7 @@ run_fishflux_segmented <- function(data, cores) {
 }
 
 ind_functions <- function(fluxes_sp_size, troph, sp_size_params) {
+  #compute individual functions
   left_join(fluxes_sp_size, troph) %>%
     left_join(unique(select(sp_size_params, species, lwa_m, lwb_m))) %>%
     mutate(biom = lwa_m*(TL^lwb_m),
@@ -229,7 +231,7 @@ ind_functions <- function(fluxes_sp_size, troph, sp_size_params) {
 }
 
 combine_transects_functions <- function(fish, functions_sp_size) {
-  
+  #combine
   functions <- functions_sp_size %>%
     group_by(species, TL) %>%
     summarise_if(is.numeric, median) %>%
@@ -243,7 +245,7 @@ combine_transects_functions <- function(fish, functions_sp_size) {
 }
 
 summarize_transect <- function(transect, coral) {
-  
+  #summarize
   cor <- select(coral, location, site, zone, year, coral_cover) %>%
     group_by(location, year, site, zone) %>%
     summarize(coral_cover = mean(coral_cover))
@@ -274,8 +276,7 @@ summarize_transect <- function(transect, coral) {
 
 fit_ts_models_fish <- function(data) {
   
-  #data <- summary_fish_functions 
-  
+
   data[data$location == "Kon\xe9" , "location"] <- "Kone"
   
   data <- data %>%
@@ -293,11 +294,11 @@ fit_ts_models_fish <- function(data) {
 
 clean_benthos_ts <- function(ts_benthos_case_study) {
 
-# rock and rubble act more as turf?
+# rock and rubble act more as turf
 ts_benthos_case_study$taxon_original <- ts_benthos_case_study$taxon
 ts_benthos_case_study$taxon <- ifelse(ts_benthos_case_study$taxon=="Rock" | ts_benthos_case_study$taxon=="coral rubble", "turf algae", as.character(ts_benthos_case_study$taxon))
 
-# macroalgae acts similar to fleshy? 
+# macroalgae acts similar to fleshy 
 ts_benthos_case_study$taxon <- ifelse(ts_benthos_case_study$taxon=="canopy forming macroalgae" | ts_benthos_case_study$taxon=="understory macroalgae", "fleshy algae", as.character(ts_benthos_case_study$taxon))
 
 ts_benthos_case_study$N <- ceiling(ts_benthos_case_study$cover) # % cover = number of "individuals"
@@ -322,7 +323,7 @@ check_XY_difference <- function(x, y) { c(FALSE, abs(diff(x)) == 1 | abs(diff(y)
 
 
 sim_colony_size_ts <- function(ts_benthos_case_study) {
-  
+  #simulation
   sites <- unique(paste(ts_benthos_case_study$Year, ts_benthos_case_study$Site, ts_benthos_case_study$Replicate, sep = "_"))
   ntot   <-length(unique(sites))
   coords <- expand.grid(c(1:10), c(1:10)) 
@@ -415,7 +416,7 @@ indivs$taxon <- ifelse(indivs$taxon=="Rock and Rubble" | indivs$taxon=="Rubble",
 indivs$taxon <- ifelse(indivs$taxon=="Macroalgae", "fleshy algae", as.character(indivs$taxon))
 
 
-# set formula
+## set formula
 indivs$fun <- rls_info$geometry[match(indivs$taxon, rls_info$taxon)]
 use <- indivs[complete.cases(indivs), ] # removes all without trait data 
 head(use, 30)
@@ -494,7 +495,7 @@ compute_functions <- function(morphs_traits, predictors_ts, rls_info, ts_benthos
   trait_avs <- morphs_traits[[2]]
   morphs_Rugo <- morphs_traits[[3]] 
   
-  ######################## (1) carbonate production & storage
+  ####################### (1) carbonate production & storage
   
   # change in volume and skeletal density
   sd_dat <- subset(trait_avs, trait_name=="Skeletal density")
@@ -596,8 +597,14 @@ compute_functions <- function(morphs_traits, predictors_ts, rls_info, ts_benthos
 
 create_ts_functions_dataset <- function(fish, benthos) {
 
-#fish <- read_csv("output/ts_transect_fish_functions.csv")
 fish$location[fish$location %in% c("Cousin", "Mahe", "Praslin", "Ste")] = "Seychelles"
+
+fish[fish$location == "Seychelles",]$herb <- fish[fish$location == "Seychelles",]$herb/154*250
+fish[fish$location == "Seychelles",]$plank <- fish[fish$location == "Seychelles",]$plank/154*250
+fish[fish$location == "Seychelles",]$pisc <- fish[fish$location == "Seychelles",]$pisc/154*250
+fish[fish$location == "Seychelles",]$prod <- fish[fish$location == "Seychelles",]$prod/154*250
+fish[fish$location == "Seychelles",]$exP <- fish[fish$location == "Seychelles",]$exP/154*250
+fish[fish$location == "Seychelles",]$exN <- fish[fish$location == "Seychelles",]$exN/154*250
 
 fish = fish %>% dplyr::select(c(location, site, year, herb, plank, pisc, prod, exP, exN, turn)) %>% group_by(location, site, year) %>% 
   summarise(herb_avg = mean(herb), plank_avg = mean(plank), pisc_avg = mean(pisc), prod_avg = mean(prod), exP_avg = mean(exP), exN_avg = mean(exN), turn_avg = mean(turn))
@@ -613,9 +620,9 @@ ts_functions_dataset
 }
 
 
-#load("../3_rls_analysis/output/pca_functions.RData")
 
 predict_pca <- function(ts_functions_dataset) {
+  #predict
   
   ts_functions_dataset <-  ts_functions_dataset %>% rename(herb = herb_avg, plank = plank_avg, prod = prod_avg, pisc = pisc_avg, exN = exN_avg, exP = exP_avg, turn = turn_avg) 
   ts_functions_dataset <- ts_functions_dataset %>% rename(GPP_ghr = GPP_ghr_avg, OrgGrowth_gyr = OrgGrowth_gyr_avg, Calc_ghr = Calc_ghr_avg, Storage_kg = Storage_avg, Accretion_kgyr = Accretion_kgyr_avg, Rugosity = Rugosity_avg, BranchSpace_cm3 = BranchSpace_cm3_avg) 
@@ -623,11 +630,14 @@ predict_pca <- function(ts_functions_dataset) {
   fun <- c("herb", "plank", "prod","pisc",  "exN", "exP", "turn", "GPP_ghr", "OrgGrowth_gyr",  "Calc_ghr", "Storage_kg", "Accretion_kgyr",  "Rugosity", "BranchSpace_cm3")
   all <- ts_functions_dataset[, fun]
   
+  all[,8:12] <- all[,8:12]*250
+  all[,14] <- all[,14]*250
+  
   log.all <- log(all+1)
   
   load("../3_rls_analysis/output/pca_functions.RData")
   
-  ts_pca <- data.frame(predict(pca_functions, newdata = log.all))
+  ts_pca <- data.frame(predict(pca_fun, newdata = log.all))
   
   ts_pca$year <- ts_functions_dataset$year 
   ts_pca$location <- ts_functions_dataset$location
@@ -640,7 +650,7 @@ predict_pca <- function(ts_functions_dataset) {
 
 
 fig_4 <- function(ts_pca) {
-## Making Figure 4
+### Making Figure 4
 colors = c("#8B6A06", "#B78C08", "#E3AE09", "#FFD700", "#FFE55C", "#FFED8A", "#002600", "#003300", "#004c00", "#006600", 
            "#008000", "#198c19", "#329932", "#66b266", "#7fbf7f", "#99cc99", "#b2d8b2", "#260818", "#2f1969", "#351c75", 
            "#3a2868", "#3f1e5f", "#4a236f", "#54287f", "#5f2d8f", "#554a75", "#71639c", "#7f6faf", "#8e7cc3", "#c3b8de", 
@@ -652,7 +662,7 @@ PC1 = pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$sit
   geom_line(aes(col = site, group = site), show.legend = F) + 
   geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
   scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
-  scale_y_reverse(name = "PC1 (33.3%)", limits = c(4.5, -1.75), breaks = seq(4.5,-1.5, -2)) +
+  scale_y_reverse(name = "PC1 (32.4%)", limits = c(3.5, -1.75), breaks = seq(3.5,-1.5, -2)) +
   scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
   theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
         panel.grid = element_line(colour = NA),
@@ -670,7 +680,7 @@ PC2 = pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$sit
   geom_line(aes(col = site, group = site), show.legend = F) + 
   geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
   scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
-  scale_y_continuous(name = "PC2 (24.5%)", breaks = seq(-4, 4, 2), limits = c(-4, 4)) +
+  scale_y_continuous(name = "PC2 (25.8%)", breaks = seq(-10, -2, 2), limits = c(-10, -2)) +
   scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
   theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
         panel.grid = element_line(colour = NA),
@@ -687,7 +697,7 @@ PC3 <- pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$si
   geom_line(aes(col = site, group = site), show.legend = F) + 
   geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
   scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
-  scale_y_continuous(name = "PC3 (14.4%)", breaks = seq(-3.5, 2.5, 2), limits = c(-3.5, 2.5)) +
+  scale_y_continuous(name = "PC3 (13.7%)", breaks = seq(-2, 4, 2), limits = c(-2, 4)) +
   scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
   theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
         panel.grid = element_line(colour = NA),
@@ -704,7 +714,7 @@ PC4 <- pca_ordered %>% mutate(site = factor(site, levels = unique(pca_ordered$si
   geom_line(aes(col = site, group = site), show.legend = F) + 
   geom_point(shape = 21, aes(fill = site), color = "black", size = 0.75, show.legend = F) +
   scale_x_continuous(name = "", breaks = seq(1995, 2020, 5), limits = c(1994, 2020), labels = c("", 2000, "", 2010, "", 2020)) +
-  scale_y_continuous(name = "PC4 (6.7%)", breaks = seq(-2, 2, 2), limits = c(-2, 2.25)) +
+  scale_y_continuous(name = "PC4 (7.1%)", breaks = seq(-3, -1, 1), limits = c(-3, -1)) +
   scale_color_manual(values = colors) + scale_fill_manual( values = colors) +
   theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
         panel.grid = element_line(colour = NA),

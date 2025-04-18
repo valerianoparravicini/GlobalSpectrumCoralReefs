@@ -110,19 +110,19 @@ summarize_transect <- function(transect) {
   transect %>%
     group_by(SurveyID) %>%
     summarize(
-      biom = sum(biom * Abundance, na.rm = T) , 
-      herb = sum(herb * Abundance, na.rm = T) , 
-      plank = sum(plank * Abundance, na.rm = T) , 
-      pisc = sum(pisc * Abundance, na.rm = T) , 
-      prod = sum(prod * Abundance, na.rm = T) , 
-      exP = sum(exP * Abundance, na.rm = T) , 
-      egP = sum(egP * Abundance, na.rm = T) , 
-      exN = sum(exN * Abundance, na.rm = T) , 
-      egN = sum(egN * Abundance, na.rm = T) , 
-      Ic = sum(Ic * Abundance, na.rm = T),
-      respC = sum(respC * Abundance, na.rm = T),
-      respC_noplank = sum(respC_noplank * Abundance, na.rm = T),
-      prod_noplank = sum(prod_noplank * Abundance, na.rm = T)) %>%
+      biom = (sum(biom * Abundance, na.rm = T)) , 
+      herb = (sum(herb * Abundance, na.rm = T)) , 
+      plank = (sum(plank * Abundance, na.rm = T)) , 
+      pisc = (sum(pisc * Abundance, na.rm = T)) , 
+      prod = (sum(prod * Abundance, na.rm = T)) , 
+      exP = (sum(exP * Abundance, na.rm = T)) , 
+      egP = (sum(egP * Abundance, na.rm = T)) , 
+      exN = (sum(exN * Abundance, na.rm = T)) , 
+      egN = (sum(egN * Abundance, na.rm = T)) , 
+      Ic = (sum(Ic * Abundance, na.rm = T)),
+      respC = (sum(respC * Abundance, na.rm = T)),
+      respC_noplank = (sum(respC_noplank * Abundance, na.rm = T)),
+      prod_noplank = (sum(prod_noplank * Abundance, na.rm = T))) %>%
     ungroup() %>%
     mutate(turn = prod/biom,
            exNP = exN/exP,

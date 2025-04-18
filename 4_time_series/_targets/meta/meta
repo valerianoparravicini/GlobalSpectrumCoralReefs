@@ -35,28 +35,29 @@ benthic_functions|stem|5a4b7f1229d1c89c|4d42c15144223c02|1837e11783c697e3|200632
 functions|stem||11efd7eba3089681|0f0b026bb4fbc864|512566530||t20175.596082279s||0|rds|local|vector|||0.003||impossible de trouver la fonction create_ts_functions_dataset
 pca_file|stem|caa92d8dae05be5b|fc842a918b505444|2c530c1562a7fbd1|401986704|../3_rls_analysis/output/pca_functions.RData|t20178.4475601242s|s131683b|131683|file|local|vector|||3.971||
 pca|stem|eb26da7f292606da|032f57080d680c9d|13716f6ae3bfb2c5|1834004178||t20178.4485313074s|s66b|66|rds|local|vector|||0.001||
-ts_functions_dataset|stem|04f92352c0cd6067|92b61035d35e431f|fbaa5621a4389bde|-2049382626||t20178.448532326s|s41457b|41457|rds|local|vector|||0.068||
 pca_rls|stem|eb26da7f292606da|032f57080d680c9d|13716f6ae3bfb2c5|-1291782123||t20178.452329973s|s66b|66|rds|local|vector|||0.001||
 pca_fun|stem|eb26da7f292606da|032f57080d680c9d|13716f6ae3bfb2c5|1373942842||t20178.4545678101s|s66b|66|rds|local|vector|||0.002||
 pca_functions|stem|eb26da7f292606da|3dbbd8d06f94743d|13716f6ae3bfb2c5|-1773575807||t20178.4565043431s|s66b|66|rds|local|vector|||0.001||
 pca_ts|stem|e8b61b8a9215d390|81577e290553acdd|753bd750b020894f|-1546434128||t20178.4590202436s|s25659b|25659|rds|local|vector|||0.018||
-ts_pca|stem|e8b61b8a9215d390|81577e290553acdd|753bd750b020894f|1975337112||t20182.5363608422s|s25659b|25659|rds|local|vector|||0.018||
+ts_functions_dataset|stem|1a527f658efc64a3|92b61035d35e431f|bc1ad166c5099ce8|-2049382626||t20195.4975432451s|s41451b|41451|rds|local|vector|||0.109||
+ts_pca|stem|61505a9ea66f0d9b|81577e290553acdd|c10331427ca52ef6|1975337112||t20195.4991701877s|s25695b|25695|rds|local|vector|||0.037||
+Fig_4|stem|0ee21b014bb0b42d|9884a9af6f57607c|608cb67ab1913ab4|-1962471454||t20195.5063079293s|s68b|68|rds|local|vector|||1.308|Removed 3 rows containing missing values or values outside the scale rangegeom_point.. Removed 5 rows containing missing values or values outside the scale rangegeom_line.. Removed 8 rows containing missing values or values outside the scale rangegeom_point.|
 check_XY_difference|function|8eb7475cfac799d5
 algae_temp_factor|function|9c139267bd8849e2
-.Random.seed|object|1f1efb374c0598b7
+.Random.seed|object|88ab99d0fdcfc23d
 run_fishflux|function|a825b90556ad24b5
 geometry_change_1_year_ts|function|1cb7c9f90d21b241
 coral_temp_factor|function|c4c1239c9f787629
 fit_ts_models_fish|function|177769f10a7c4564
 clean_benthos_ts|function|f52909ddd98f63ef
-predict_pca|function|0e08dd178f978e9f
+predict_pca|function|d3eff7a7b8fee690
 unique_spsize_sst|function|c80577d278e884b8
 extract_yr|function|c7339a955ef36898
 ind_functions|function|27d95f650f81ff39
 flat|function|fced20bb6fd97ac0
 clean_bent|function|31adfcb11cd61177
 unique_spsize|function|7dba92640e243c1c
-create_ts_functions_dataset|function|1b09cb8107e40463
+create_ts_functions_dataset|function|77afeb7e4e3ab581
 branches|function|45b0e21edffc2fe6
 sst_time_series|function|54f06b6413cad02c
 hemisphere|function|7f4e0fe22e61e0e1
@@ -65,8 +66,7 @@ add_params|function|87a856b9a70d1d55
 combine_transects_functions|function|65e052e3b7cf8690
 clean_fish|function|6daad3507627c6fa
 cone|function|0c38b635630816f1
-fig_4|function|ffdc94159fd7ddaa
+fig_4|function|4af8e21aef03830d
 sim_colony_size_ts|function|9d50190f21020bb4
 run_fishflux_segmented|function|1eb27646788dbfdf
 compute_functions|function|3082f9fdf9dbe342
-Fig_4|stem|0ee21b014bb0b42d|9884a9af6f57607c|c0a916d327e21a31|-1962471454||t20182.5396161117s|s68b|68|rds|local|vector|||1.275|Removed 1 row containing missing values or values outside the scale rangegeom_point.. Removed 1 row containing missing values or values outside the scale rangegeom_point.. Removed 1 row containing missing values or values outside the scale rangegeom_line.. Removed 1 row containing missing values or values outside the scale rangegeom_point.|

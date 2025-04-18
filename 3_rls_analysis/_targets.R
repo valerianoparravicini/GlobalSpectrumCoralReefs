@@ -7,7 +7,7 @@ dir.create("output", recursive = TRUE, showWarnings = FALSE)
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", "fishualize", "patchwork", "readxl", "sp", "ggforce", "scales", "reshape2", 
                             "cowplot", "ggrepel", "fishualize", "viridis", "ggcorrplot", "parallel", "utils", "brms", "cmdstanr",
-                            "rlang", "RColorBrewer"))
+                            "rlang", "RColorBrewer", "sf"))
 
 
 

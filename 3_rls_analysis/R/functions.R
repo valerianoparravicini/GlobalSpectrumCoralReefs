@@ -58,7 +58,7 @@ figure_1 <- function(list_dataset_functions) {
   dataset_functions <- list_dataset_functions[[1]]
   rls_functions <- list_dataset_functions[[2]]
   
-  # Setting map parameters ####
+  ### Setting map parameters ###
   # warning messages due to an update from PROJ4 to PROJ6. In the meantime, the warning is just a nuisance and has no implications
   load(url("https://github.com/valentinitnelav/RandomScripts/blob/master/NaturalEarth.RData?raw=true"))
   PROJ <- "+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs" 
@@ -109,7 +109,7 @@ figure_1 <- function(list_dataset_functions) {
     theme_void() + theme(legend.position="bottom")
   
 
-  # Figure 1B
+  ## Figure 1B
   (Figure_1B <- (ggplot(data = dataset_functions, aes(x=functions_log10, fill = Label)) +
                    geom_histogram(color="black", linewidth = .1, bins = 15) + 
                    facet_wrap(~Label, ncol = 7, scales = "free_x") +
@@ -129,7 +129,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g."* h^-1)), breaks = c(0.1, 100)) +
+      scale_x_log10(name = expression(paste("gC"*" "*transect^-2*" "*day^-1)), breaks = c(0.1, 100)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 2250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -147,7 +147,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g."* h^-1)), breaks = c(0.1, 100)) +
+      scale_x_log10(name = expression(paste("gC"*" "*transect^-2*" "*day^-1)), breaks = c(0.1, 100)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -165,7 +165,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("kg."* yr^-1)), breaks = c(0.1, 100)) +
+      scale_x_log10(name = expression(paste("gC"*" "*transect^-2*" "*day^-1)), breaks = c(0.1, 100)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -183,7 +183,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g."* h^-1)), breaks = c(0.1, 100)) +
+      scale_x_log10(name = expression(paste("gC"*" "*transect^-2*" "*day^-1)), breaks = c(0.1, 100)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -201,7 +201,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g."* h^-1)), breaks = c(0.1, 100)) +
+      scale_x_log10(name = expression(paste("gN"*" "*transect^-2*" "*day^-1)), breaks = c(0.1, 100)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -219,7 +219,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g."* h^-1)), breaks = c(0.1, 100)) +
+      scale_x_log10(name = expression(paste("gN"*" "*transect^-2*" "*day^-1)), breaks = c(0.1, 100)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -237,7 +237,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g."* h^-1)), breaks = c(0, 0.001)) +
+      scale_x_log10(name = expression(paste("gC"*" "*transect^-2*" "*day^-1)), breaks = c(0, 0.001)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -255,7 +255,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g."* h^-1)), breaks = c(0.01, 10)) +
+      scale_x_log10(name = expression(paste("g"*" "*m^-2*" "*h^-1)), breaks = c(0.01, 10)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -273,7 +273,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("kg." * yr^-1)), breaks = c(10, 10000)) +
+      scale_x_log10(name = expression(paste("kg"*" "*m^-2*" "*year^-1)), breaks = c(10, 10000)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -291,7 +291,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("g." * m^-2 *"."* h^-1)), breaks = c(0.01, 10)) +
+      scale_x_log10(name = expression(paste("g"*" "*m^-2*" "*h^-1)), breaks = c(0.01, 10)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -309,7 +309,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("kg." * m^-2)), breaks = c(0.1, 100)) +
+      scale_x_log10(name = expression(paste("kg"*" "*m^-2*" "*year^-1)), breaks = c(0.1, 100)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250, 500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -327,7 +327,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(paste("kg." * yr^-1)), breaks = c(0.1, 10)) +
+      scale_x_log10(name = expression(paste("kg"*" "*m^-2*" "*year^-1)), breaks = c(0.1, 10)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -363,7 +363,7 @@ figure_1 <- function(list_dataset_functions) {
   (Fig_1B[[K]] <- ggplot(data = dataset_functions_split[[K]], aes(x=functions_log10, fill = Label)) +
       ggtitle(unique(dataset_functions_split[[K]]$Label)) + 
       geom_histogram(color="black", linewidth = .1, bins = 20) + 
-      scale_x_log10(name = expression(cm^3), breaks = c(1, 10000)) +
+      scale_x_log10(name = expression(paste(cm^3*" "*m^-2)), breaks = c(1, 10000)) +
       scale_y_continuous(name = "", limits = c(0,500), breaks = c(0, 250,500), expand = c(0,0)) +
       scale_fill_manual(values = dataset_functions_split[[K]]$colors) + theme_classic() +
       theme(legend.position = "none", strip.text = element_text(hjust = 0),
@@ -401,6 +401,7 @@ ggsave("output/Fig_1.png", width = 40, height = 20, units = "cm", dpi = 320)
 
 pca_functions <- function(list_dataset_functions, benth, fish) {
 
+  
   dataset_functions <- list_dataset_functions[[1]]
   
   f.fun <- c("herb", "plank", "prod","pisc",  "exN", "exP", "turn")
@@ -425,7 +426,6 @@ pca_functions <- function(list_dataset_functions, benth, fish) {
   labels$lab[labels$fun=="OrgGrowth_gyr"] <- "ORG.G"
   labels$lab[labels$fun=="BranchSpace_cm3"] <- "SPACE"
   labels$lab[labels$fun=="Accretion_kgyr"] <- "INORG.G"
-  labels
   
   labels$n <- c(1:nrow(labels))
   
@@ -451,16 +451,17 @@ pca_functions <- function(list_dataset_functions, benth, fish) {
   
   rownames(all)<-all$SurveyID
   
-  log.all <- all[,c(f.fun, b.fun)]+1
-  #case_study <- case_study[,c(f.fun, b.fun)]+1
-  #log.all <- rbind(log.all, case_study)
-  #log.all[log.all==0] <- NA
-  #log.all <- log.all[complete.cases(log.all),]
-  log.all <- log(log.all)
-  #nrow(log.all)
+
+  all[,4:9] <- all[,4:9]
+  all[,10:14] <- all[,10:14]*250
+  all[,16] <- all[,16]*250
+  
+  log.all <- all[,c(f.fun, b.fun)]
+
+  log.all <- log1p(log.all)
+
   
   pca_fun <- prcomp(log.all, center=T, scale=T)
-  # biplot(pca)
   
   save(pca_fun, file="output/pca_functions.RData")
   
@@ -494,7 +495,7 @@ head(pc.df)
 mult <- min((max(pc.df[,"PC2"]) - min(pc.df[,"PC2"])/(max(vecs[,"PC2"])-min(vecs[,"PC2"]))),(max(pc.df[,"PC1"]) - min(pc.df[,"PC1"])/(max(vecs[,"PC1"])-min(vecs[,"PC1"]))))
 vecs$PC1b <- vecs$PC1 * mult * 0.7
 vecs$PC2b <- vecs$PC2 * mult * 0.7
-vecs$PC3b <- vecs$PC3# * mult * 0.7
+vecs$PC3b <- vecs$PC3
 
 cols <- labels$cols
 names(cols) <- labels$lab
@@ -510,7 +511,7 @@ p1 <- ggplot()+
   geom_segment(data=vecs, aes(x=0, y=0, xend=PC1b, yend=PC2b, col=labs), arrow=arrow(length=unit(1,"mm")))+
   geom_label_repel(data=vecs, aes(PC1b, PC2b, label=n, colour=labs),fontface="bold",size=2.5, force=0.0005, label.padding=unit(0.2, "mm"), label.size=1)+
   geom_label_repel(data=vecs, aes(PC1b, PC2b, label=n),fontface="bold",size=2.5, force=0.0005, label.padding=unit(0.2, "mm"), label.size=0)+
-  #geom_text_repel(data=vecs, aes(PC1b, PC2b, label=n),fontface="bold",size=3, force=0.0005)+
+  
   guides(colour="none", fill="none")+
   scale_fill_distiller(palette="Greys", direction=1)+
   scale_colour_manual(values=cols)+
@@ -596,7 +597,6 @@ prepare_PC_data <- function(list_pca_functions, pred) {
   dat <- as.data.frame(list_pca_functions[[1]]$x)
   dat$SurveyID <- rownames(dat)
   
-  ################################# 
   
   IDs <- dat$SurveyID
   
@@ -674,7 +674,7 @@ prepare_PC_data <- function(list_pca_functions, pred) {
 
 prepare_benthic_models <- function(pred, benthos) {
   
-  ################################# BENTHOS
+  ############################# BENTHOS
   
   IDsB <- benthos$SurveyID
   
@@ -688,7 +688,7 @@ prepare_benthic_models <- function(pred, benthos) {
   env_df <- na.omit(env_df)
   
   benthos <- benthos[benthos$SurveyID %in% env_df$SurveyID,]
-  #fish <- fish[fish$SurveyID %in% env_df$SurveyID,]
+  
   pred <- pred[pred$SurveyID %in% env_df$SurveyID,]
   
   pred$No.take.multizoned[pred$No.take.multizoned == "No take"] <- "No take"
@@ -754,7 +754,7 @@ prepare_benthic_models <- function(pred, benthos) {
 
 
 
-##################################### Prepare data for fish models
+#################################### Prepare data for fish models
 
 
 prepare_fish_models <- function(pred, fish) {
@@ -869,6 +869,7 @@ run_models_env <- function(dat_mod) {
   fit_pc_env <- list(fit_pc1_env,fit_pc2_env, fit_pc3_env, fit_pc4_env)
   
   fit_pc_env
+  
 }
 
 
@@ -941,6 +942,7 @@ ind_benthic_models_env <- function(benthos) {
 
 ind_benthic_models_noenv <- function(benthos) {
   
+  
   pr <- get_prior(log1p(Calc_ghr) ~ DHW1  + gravtot + mpa + (1|SiteCode), data = benthos)
   pr$prior[which(pr$class == "b")] <- "normal(0,1)"
   
@@ -993,6 +995,8 @@ ind_fish_models_env <- function(fish) {
 
 ind_fish_models_noenv <- function(fish) {
   
+  
+  
   pr <- get_prior(log1p(herb) ~ DHW1  + gravtot + mpa + (1|SiteCode), data = fish)
   pr$prior[1] <- "normal(0,1)"
   
@@ -1019,12 +1023,7 @@ ind_fish_models_noenv <- function(fish) {
 
 plot_pc <- function(labels2, models_env, models_noenv) {
   
-  #load("output/fit_pcs.RData")
-  #load("output/fit_pcs_noenv.RData")
-  
-  #fit_pcs <- fish_models_env
-  #fit_pcs_noenv <- fish_models_noenv
-  
+
   stat_interval <- function(..., .width = .95) {
     stat_summary(..., fun.data = ggdist::median_hdci,
                  geom = "linerange", fun.args = list(.width = .width))
@@ -1165,19 +1164,13 @@ vecs$PC3b <- vecs$PC3# * mult * 0.7
 cols <- labels$cols
 names(cols) <- labels$lab
 
-# 2) add human predictors
+
 
 pc.df$dhw <- pred$mean_DHW_1year[match(rownames(pc.df), pred$SurveyID)]
 pc.df$gravity <- pred$gravtot2[match(rownames(pc.df), pred$SurveyID)]
 
 pc.df <- na.omit(pc.df) 
 
-#plot_grid(
-#  ggplot(pc.df, aes(PC2, PC3, fill=sqrt(dhw)))+geom_point(shape=21)+scale_fill_viridis(option="magma"),
-#  ggplot(pc.df, aes(PC1, PC4, fill=log(gravity)))+geom_point(shape=21)+scale_fill_viridis())
-
-
-# 3)find upper/lower hulls
 
 n_rows <- round((nrow(pc.df)/100)*10, 0)
 row_n <- (nrow(pc.df)-n_rows):nrow(pc.df)
@@ -1192,7 +1185,7 @@ grav_low <-cbind(pc.df[pc.df$gravity %in% sort(pc.df$gravity, decreasing=T)[row_
 grav_sub <- rbind(grav_low, grav_high)
 grav_hulls <- rbind(grav_low[chull(grav_low[,c("PC1", "PC4")]), ], grav_high[chull(grav_high[,c("PC1", "PC4")]), ])
 
-# 4) plot
+## 4) plot
 
 display.brewer.pal(n = 8, name = 'Dark2')
 brewer.pal(n = 8, name = "Dark2")
@@ -1294,6 +1287,8 @@ fig3ab
 
 
 combine_fig_3 <- function(fig_3ab, fig_3c) {
+  
+  ##combine
   
   fig_3cb <- plot_grid(fig_3c, NULL, rel_widths = c(1,0.08))
   fig3 <- plot_grid(
